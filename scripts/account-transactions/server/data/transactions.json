@@ -1,0 +1,37 @@
+{
+  "erc20Transfers": [
+    {
+      "blockNumber": 21415138,
+      "blockTimestamp": 1734352823000,
+      "contract": "0xa0b86991c6218b36c1d19d4a2e9eb0ce3606eb48",
+      "receiver": "0x0000000000000000000000000000000000000000",
+      "sender": "0xc4922d64a24675e16e1586e3e3aa56c06fabe907",
+      "txHash": "0x2c2642d655538b68763153d47a26916016f1f9377432da7bdd6f63d548b47e7c",
+      "txIndex": "0x17",
+      "type": "ERC20",
+      "value": "19475288341"
+    },
+    {
+      "blockNumber": 21593527,
+      "blockTimestamp": 1736505479000,
+      "contract": "0xec53bf9167f50cdeb3ae105f56099aaab9061f83",
+      "receiver": "0xacb55c530acdb2849e6d4f36992cd8c9d50ed8f7",
+      "sender": "0x0000000000000000000000000000000000000000",
+      "txHash": "0x68579f4b7556324bd239d8b1d7994879e234ba33ceff91cc682c229b84d3bcde",
+      "txIndex": "0x27",
+      "type": "ERC20",
+      "value": "110000000000000000000"
+    },
+    {
+      "blockNumber": 21593527,
+      "blockTimestamp": 1736505489900,
+      "contract": "0xdd629e5241cbc5919847783e6c96b2de4754e438",
+      "receiver": "0x915e287eea9594963b33fd12bf908312b5d860d2",
+      "sender": "0x0000000000000000000000000000000000000000",
+      "txHash": "0x0e5ae20516b9d67aa63e6c434bc3da6720830f9cf40d74dd66200982c6dcaf58",
+      "txIndex": "0x43",
+      "type": "ERC20",
+      "value": "264162928344564654531009"
+    }
+  ]
+}

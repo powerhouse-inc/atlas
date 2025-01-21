@@ -1,0 +1,121 @@
+scalar Amount_Tokens
+scalar EthereumAddress
+scalar Amount_Percentage
+scalar EmailAddress
+scalar Date
+scalar DateTime
+scalar URL
+scalar Amount_Money
+scalar OLabel
+scalar Currency
+scalar PHID
+scalar OID
+type AccountTransactionsState {
+  transactions: [TransactionEntry!]!
+  budgets: [Budget!]!
+}
+
+type TransactionEntry {
+  id: ID!
+  fromAccount: EthereumAddress
+  toAccount: EthereumAddress
+  amount: Amount_Money!
+  datetime: DateTime!
+  details: TransactionDetails!
+  budget: OID
+}
+
+union TransactionDetails = CryptoTransactionDetails | BankTransactionDetails
+
+type CryptoTransactionDetails {
+  txHash: String!
+  token: Currency!
+  blockNumber: Int
+}
+
+type BankTransactionDetails {
+  currency: Currency!
+  transactionId: String
+  referenceNumber: String
+}
+
+type Budget {
+  id: OID!
+  name: OLabel
+}
+
+
+
+
+# account_transactions
+
+input CreateTransactionInput {
+  fromAccount: EthereumAddress
+  toAccount: EthereumAddress
+  amount: Amount_Money!
+  datetime: DateTime!
+  details: TransactionDetailsInput!
+  budget: OID
+}
+
+input TransactionDetailsInput {
+  crypto: CryptoTransactionDetailsInput
+  bank: BankTransactionDetailsInput
+}
+
+input CryptoTransactionDetailsInput {
+  txHash: String!
+  token: Currency!
+  blockNumber: Int
+}
+
+input BankTransactionDetailsInput {
+  currency: Currency!
+  transactionId: String
+  referenceNumber: String
+}
+
+input Budget {
+  id: OID!
+  name: OLabel
+}
+
+input UpdateTransactionInput {
+  fromAccount: EthereumAddress
+  toAccount: EthereumAddress
+  amount: Amount_Money
+  datetime: DateTime
+  details: TransactionDetailsInput
+  budget: OID
+}
+
+input TransactionDetailsInput {
+  crypto: CryptoTransactionDetailsInput
+  bank: BankTransactionDetailsInput
+}
+
+input CryptoTransactionDetailsInput {
+  txHash: String
+  token: Currency
+  blockNumber: Int
+}
+
+input BankTransactionDetailsInput {
+  currency: Currency
+  transactionId: String
+  referenceNumber: String
+}
+
+input Budget {
+  id: OID!
+  name: OLabel
+}
+
+input DeleteTransactionInput {
+  id: ID!
+}
+
+input UpdateTransactionBudgetInput {
+  txId: ID!,
+  budgetId: OID!
+}
