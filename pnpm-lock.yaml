@@ -32,6 +32,9 @@ importers:
       cmdk:
         specifier: ^1.0.4
         version: 1.0.4(@types/react@18.3.18)(react-dom@18.3.1(react@18.3.1))(react@18.3.1)
+      copy-anything:
+        specifier: ^4.0.2
+        version: 4.0.2
       date-fns-tz:
         specifier: ^3.2.0
         version: 3.2.0(date-fns@4.1.0)
@@ -41,6 +44,12 @@ importers:
       luxon:
         specifier: ^3.5.0
         version: 3.5.0
+      mathjs:
+        specifier: ^14.0.1
+        version: 14.0.1
+      microdiff:
+        specifier: ^1.5.0
+        version: 1.5.0
       react:
         specifier: ^18.3.1
         version: 18.3.1
@@ -4223,6 +4232,10 @@ packages:
     resolution: {integrity: sha512-yCEafptTtb4bk7GLEQoM8KVJpxAfdBJYaXyzQEgQQQgYrZiDp8SJmGKlYza6CYjEDNstAdNdKA3UuoULlEbS6w==}
     engines: {node: '>=12.13'}
 
+  copy-anything@4.0.2:
+    resolution: {integrity: sha512-c87DOYWkRP4gZybb8d4vedb8i8Yu13ukeZdbJArCqW8MiRig0b4Brq2fp5VPeva8l1AmOiXrRYFiQJO3mfolDg==}
+    engines: {node: '>=18'}
+
   core-util-is@1.0.3:
     resolution: {integrity: sha512-ZQBvi1DcpJ4GDqanjucZ2Hj3wEO5pZDS89BWbkcrvdxksJorwUDDZamX9ldFkp9aw2lmBDLgkObEA4DWNJ9FYQ==}
 
@@ -5127,6 +5140,10 @@ packages:
   fraction.js@4.3.7:
     resolution: {integrity: sha512-ZsDfxO51wGAXREY55a7la9LScWpwv9RxIrYABrlvOFBlH/ShPnrtsXeuUIfXKKOVicNxQ+o8JTbJvjS4M89yew==}
 
+  fraction.js@5.2.1:
+    resolution: {integrity: sha512-Ah6t/7YCYjrPUFUFsOsRLMXAdnYM+aQwmojD2Ayb/Ezr82SwES0vuyQ8qZ3QO8n9j7W14VJuVZZet8U3bhSdQQ==}
+    engines: {node: '>= 12'}
+
   fresh@0.5.2:
     resolution: {integrity: sha512-zJ2mQYM18rEFOudeV4GShTGIQ7RbzA7ozbU9I/XBpm7kqgMywgmylMwXHxZJmkVoYkna9d2pVXVXPdYTP9ej8Q==}
     engines: {node: '>= 0.6'}
@@ -5683,6 +5700,10 @@ packages:
     resolution: {integrity: sha512-ZhMwEosbFJkA0YhFnNDgTM4ZxDRsS6HqTo7qsZM08fehyRYIYa0yHu5R6mgo1n/8MgaPBXiPimPD77baVFYg+A==}
     engines: {node: '>=12.13'}
 
+  is-what@5.0.2:
+    resolution: {integrity: sha512-vI7Ui0qzNQ2ClDZd0bC7uqRk3T1imbX5cZODmVlqqdqiwmSIUX3CNSiRgFjFMJ987sVCMSa7xZeEDtpJduPg4A==}
+    engines: {node: '>=18'}
+
   is-windows@1.0.2:
     resolution: {integrity: sha512-eXK1UInq2bPmjyX6e3VHIzMLobc4J94i4AWn+Hpq3OU5KkrRC96OAcR3PRJ/pGu6m8TRnBHP9dkXQVsT/COVIA==}
     engines: {node: '>=0.10.0'}
@@ -6061,6 +6082,11 @@ packages:
     engines: {node: '>= 18'}
     hasBin: true
 
+  mathjs@14.0.1:
+    resolution: {integrity: sha512-yyJgLwC6UXuve724np8tHRMYaTtb5UqiOGQkjwbSXgH8y1C/LcJ0pvdNDZLI2LT7r+iExh2Y5HwfAY+oZFtGIQ==}
+    engines: {node: '>= 18'}
+    hasBin: true
+
   media-typer@0.3.0:
     resolution: {integrity: sha512-dq+qelQ9akHpcOl/gUVRTxVIOkAJ1wR3QAvb4RsVjS8oVoFjDGTc679wJYmUmknUF5HwMLOgb5O+a3KxfWapPQ==}
     engines: {node: '>= 0.6'}
@@ -6096,6 +6122,9 @@ packages:
 
   micro-ftch@0.3.1:
     resolution: {integrity: sha512-/0LLxhzP0tfiR5hcQebtudP56gUurs2CLkGarnCiB/OqEyUFQ6U3paQi/tgLv0hBJYt2rnr9MNpxz4fiiugstg==}
+
+  microdiff@1.5.0:
+    resolution: {integrity: sha512-Drq+/THMvDdzRYrK0oxJmOKiC24ayUV8ahrt8l3oRK51PWt6gdtrIGrlIH3pT/lFh1z93FbAcidtsHcWbnRz8Q==}
 
   micromatch@4.0.8:
     resolution: {integrity: sha512-PXwfBhYu0hBCPw8Dn0E+WDYb7af3dSLVWKi3HGv84IdF4TyFoC0ysxFd0Goxw7nSv4T/PzEJQxsYsEiFCKo2BA==}
@@ -13654,6 +13683,10 @@ snapshots:
     dependencies:
       is-what: 4.1.16
 
+  copy-anything@4.0.2:
+    dependencies:
+      is-what: 5.0.2
+
   core-util-is@1.0.3: {}
 
   cors@2.8.5:
@@ -14782,6 +14815,8 @@ snapshots:
 
   fraction.js@4.3.7: {}
 
+  fraction.js@5.2.1: {}
+
   fresh@0.5.2: {}
 
   front-matter@4.0.2:
@@ -15416,6 +15451,8 @@ snapshots:
 
   is-what@4.1.16: {}
 
+  is-what@5.0.2: {}
+
   is-windows@1.0.2: {}
 
   is-wsl@2.2.0:
@@ -15832,6 +15869,18 @@ snapshots:
       tiny-emitter: 2.1.0
       typed-function: 4.2.1
 
+  mathjs@14.0.1:
+    dependencies:
+      '@babel/runtime': 7.26.0
+      complex.js: 2.4.2
+      decimal.js: 10.4.3
+      escape-latex: 1.2.0
+      fraction.js: 5.2.1
+      javascript-natural-sort: 0.7.1
+      seedrandom: 3.0.5
+      tiny-emitter: 2.1.0
+      typed-function: 4.2.1
+
   media-typer@0.3.0: {}
 
   memoize-one@6.0.0: {}
@@ -15853,6 +15902,8 @@ snapshots:
   methods@1.1.2: {}
 
   micro-ftch@0.3.1: {}
+
+  microdiff@1.5.0: {}
 
   micromatch@4.0.8:
     dependencies:
