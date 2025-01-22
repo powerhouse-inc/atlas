@@ -1,6 +1,6 @@
 {
   "name": "@sky-ph/atlas",
-  "version": "1.0.0",
+  "version": "1.0.1",
   "license": "AGPL-3.0-only",
   "types": "dist/index.d.ts",
   "main": "dist/index.cjs",
@@ -11,14 +11,17 @@
   ],
   "exports": {
     ".": {
+      "types": "./dist/index.d.ts",
       "import": "./dist/es/index.js",
       "require": "./dist/cjs/index.cjs"
     },
     "./editors": {
+      "types": "./dist/es/editors.d.ts",
       "import": "./dist/es/editors.js",
       "require": "./dist/cjs/editors.cjs"
     },
     "./document-models": {
+      "types": "./dist/es/documentModels.d.ts",
       "import": "./dist/es/documentModels.js",
       "require": "./dist/cjs/documentModels.cjs"
     }
