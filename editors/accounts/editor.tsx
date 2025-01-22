@@ -76,46 +76,45 @@ export default function Editor(props: IProps) {
         </h2>
         <div style={{ display: "flex", flexDirection: "column", gap: "10px" }}>
           <input
-            type="text"
-            placeholder="Account Name"
-            value={newAccount.name}
             onChange={(e) =>
               setNewAccount({ ...newAccount, name: e.target.value })
             }
+            placeholder="Account Name"
             style={{
               padding: "8px",
               borderRadius: "4px",
               border: "1px solid #ccc",
             }}
+            type="text"
+            value={newAccount.name}
           />
           <input
-            type="text"
-            placeholder="Ethereum Address"
-            value={newAccount.account}
             onChange={(e) =>
               setNewAccount({ ...newAccount, account: e.target.value })
             }
+            placeholder="Ethereum Address"
             style={{
               padding: "8px",
               borderRadius: "4px",
               border: "1px solid #ccc",
             }}
+            type="text"
+            value={newAccount.account}
           />
           <input
-            type="text"
-            placeholder="Budget Path"
-            value={newAccount.budgetPath}
             onChange={(e) =>
               setNewAccount({ ...newAccount, budgetPath: e.target.value })
             }
+            placeholder="Budget Path"
             style={{
               padding: "8px",
               borderRadius: "4px",
               border: "1px solid #ccc",
             }}
+            type="text"
+            value={newAccount.budgetPath}
           />
           <select
-            value={newAccount.type}
             onChange={(e) =>
               setNewAccount({ ...newAccount, type: e.target.value })
             }
@@ -124,6 +123,7 @@ export default function Editor(props: IProps) {
               borderRadius: "4px",
               border: "1px solid #ccc",
             }}
+            value={newAccount.type}
           >
             <option value="Protocol">Protocol</option>
             <option value="Auditor">Auditor</option>

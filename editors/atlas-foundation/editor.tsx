@@ -8,9 +8,13 @@ import {
 } from "@powerhousedao/design-system/scalars";
 import { AtlasFoundationArticleOperations } from "document-models/atlas-foundation/gen/article/operations";
 import { actions } from "../../document-models/atlas-foundation";
-import { useEffect } from 'react';
+import { useEffect } from "react";
 
-export type IProps = EditorProps<unknown, Action, AtlasFoundationArticleOperations>;
+export type IProps = EditorProps<
+  unknown,
+  Action,
+  AtlasFoundationArticleOperations
+>;
 
 export default function Editor(props: IProps) {
   const { document, dispatch, context } = props;
@@ -19,18 +23,18 @@ export default function Editor(props: IProps) {
   } = document;
 
   useEffect(() => {
-    console.log('State updated:', state);
+    console.log("State updated:", state);
   }, [state]);
 
   const handleSubmit = (values: Record<string, any>) => {
-    console.log('Values:', values);
+    console.log("Values:", values);
     // Check if masterStatus or globalTags have changed
     if (values.masterStatus !== state.masterStatus) {
       dispatch(
         actions.updateFoundation({
           masterStatus: values.masterStatus,
-          atlasType: values.atlasType
-        })
+          atlasType: values.atlasType,
+        }),
       );
       return;
     }
@@ -39,8 +43,8 @@ export default function Editor(props: IProps) {
       dispatch(
         actions.updateFoundation({
           globalTags: values.globalTags,
-          atlasType: values.atlasType
-        })
+          atlasType: values.atlasType,
+        }),
       );
       return;
     }
@@ -99,7 +103,10 @@ export default function Editor(props: IProps) {
           { label: "TWO_STAGE_BRIDGE", value: "TWO_STAGE_BRIDGE" },
           { label: "ECOSYSTEM_INTELLIGENCE", value: "ECOSYSTEM_INTELLIGENCE" },
           { label: "RECURSIVE_IMPROVEMENT", value: "RECURSIVE_IMPROVEMENT" },
-          { label: "LEGACY_TERM_USE_APPROVED", value: "LEGACY_TERM_USE_APPROVED" },
+          {
+            label: "LEGACY_TERM_USE_APPROVED",
+            value: "LEGACY_TERM_USE_APPROVED",
+          },
         ]}
       />
       <StringField

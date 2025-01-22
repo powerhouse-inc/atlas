@@ -5,7 +5,10 @@ import {
   ProcessorUpdate,
   AnalyticsPath,
 } from "@powerhousedao/reactor-api";
-import { AddFileInput, DocumentDriveDocument } from "document-model-libs/document-drive";
+import {
+  AddFileInput,
+  DocumentDriveDocument,
+} from "document-model-libs/document-drive";
 import { DateTime } from "luxon";
 
 type DocumentType = DocumentDriveDocument;

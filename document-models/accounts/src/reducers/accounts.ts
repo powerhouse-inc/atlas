@@ -19,7 +19,9 @@ export const reducer: AccountsAccountsOperations = {
   },
 
   updateAccountOperation(state, action, dispatch) {
-    const account = state.accounts.find(account => account.id === action.input.id);
+    const account = state.accounts.find(
+      (account) => account.id === action.input.id,
+    );
     if (!account) {
       throw new Error(`Account with id ${action.input.id} not found`);
     }
@@ -41,12 +43,16 @@ export const reducer: AccountsAccountsOperations = {
 
   deleteAccountOperation(state, action, dispatch) {
     // Verify account exists before deletion
-    const account = state.accounts.find(account => account.id === action.input.id);
+    const account = state.accounts.find(
+      (account) => account.id === action.input.id,
+    );
     if (!account) {
       throw new Error(`Account with id ${action.input.id} not found`);
     }
 
     // Remove account from the accounts array
-    state.accounts = state.accounts.filter(account => account.id !== action.input.id);
+    state.accounts = state.accounts.filter(
+      (account) => account.id !== action.input.id,
+    );
   },
 };

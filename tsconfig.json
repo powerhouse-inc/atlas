@@ -29,9 +29,11 @@
   "include": [
       "./index.ts",
       "./vite.config.ts",
+      "./eslint.config.js",
       "./document-models/**/*",
       "./editors/**/*",
       "./processors/**/*",
+      "./subgraphs/**/*",
       "./.storybook/**/*",
   ]
 }

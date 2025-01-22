@@ -23,7 +23,7 @@ export default function Editor(props: IProps) {
   } = document;
 
   const [transactionType, setTransactionType] = useState<"crypto" | "bank">(
-    "crypto"
+    "crypto",
   );
   const [newTransaction, setNewTransaction] = useState({
     fromAccount: "",
@@ -74,7 +74,7 @@ export default function Editor(props: IProps) {
         amount: parseFloat(newTransaction.amount),
         datetime: new Date().toISOString(),
         details,
-      })
+      }),
     );
 
     setNewTransaction({
@@ -96,7 +96,7 @@ export default function Editor(props: IProps) {
       actions.updateTransactionBudget({
         txId: transactionId,
         budgetId: editingBudget.budget,
-      })
+      }),
     );
 
     setEditingBudget(null);
@@ -105,7 +105,7 @@ export default function Editor(props: IProps) {
   const getSortedTransactions = () => {
     if (!state?.transactions) return [];
     return [...state.transactions].sort(
-      (a, b) => new Date(b.datetime).getTime() - new Date(a.datetime).getTime()
+      (a, b) => new Date(b.datetime).getTime() - new Date(a.datetime).getTime(),
     );
   };
 
@@ -129,7 +129,6 @@ export default function Editor(props: IProps) {
         </h2>
         <div style={{ display: "flex", flexDirection: "column", gap: "10px" }}>
           <select
-            value={transactionType}
             onChange={(e) =>
               setTransactionType(e.target.value as "crypto" | "bank")
             }
@@ -138,103 +137,99 @@ export default function Editor(props: IProps) {
               borderRadius: "4px",
               border: "1px solid #ccc",
             }}
+            value={transactionType}
           >
             <option value="crypto">Crypto Transaction</option>
             <option value="bank">Bank Transaction</option>
           </select>
 
           <input
-            type="text"
-            placeholder="From Account"
-            value={newTransaction.fromAccount}
             onChange={(e) =>
               setNewTransaction({
                 ...newTransaction,
                 fromAccount: e.target.value,
               })
             }
+            placeholder="From Account"
             style={{
               padding: "8px",
               borderRadius: "4px",
               border: "1px solid #ccc",
             }}
+            type="text"
+            value={newTransaction.fromAccount}
           />
 
           <input
-            type="text"
-            placeholder="To Account"
-            value={newTransaction.toAccount}
             onChange={(e) =>
               setNewTransaction({
                 ...newTransaction,
                 toAccount: e.target.value,
               })
             }
+            placeholder="To Account"
             style={{
               padding: "8px",
               borderRadius: "4px",
               border: "1px solid #ccc",
             }}
+            type="text"
+            value={newTransaction.toAccount}
           />
 
           <input
-            type="number"
-            placeholder="Amount"
-            value={newTransaction.amount}
             onChange={(e) =>
               setNewTransaction({ ...newTransaction, amount: e.target.value })
             }
+            placeholder="Amount"
             style={{
               padding: "8px",
               borderRadius: "4px",
               border: "1px solid #ccc",
             }}
+            type="number"
+            value={newTransaction.amount}
           />
 
           <input
-            type="text"
-            placeholder={
-              transactionType === "crypto"
-                ? "Transaction Hash"
-                : "Transaction ID"
-            }
-            value={newTransaction.details.txHash}
             onChange={(e) =>
               setNewTransaction({
                 ...newTransaction,
                 details: { ...newTransaction.details, txHash: e.target.value },
               })
             }
+            placeholder={
+              transactionType === "crypto"
+                ? "Transaction Hash"
+                : "Transaction ID"
+            }
             style={{
               padding: "8px",
               borderRadius: "4px",
               border: "1px solid #ccc",
             }}
+            type="text"
+            value={newTransaction.details.txHash}
           />
 
           <input
-            type="text"
-            placeholder={transactionType === "crypto" ? "Token" : "Currency"}
-            value={newTransaction.details.token}
             onChange={(e) =>
               setNewTransaction({
                 ...newTransaction,
                 details: { ...newTransaction.details, token: e.target.value },
               })
             }
+            placeholder={transactionType === "crypto" ? "Token" : "Currency"}
             style={{
               padding: "8px",
               borderRadius: "4px",
               border: "1px solid #ccc",
             }}
+            type="text"
+            value={newTransaction.details.token}
           />
 
           <input
-            type="text"
-            placeholder={
-              transactionType === "crypto" ? "Block Number" : "Reference Number"
-            }
-            value={newTransaction.details.blockNumber}
             onChange={(e) =>
               setNewTransaction({
                 ...newTransaction,
@@ -244,11 +239,16 @@ export default function Editor(props: IProps) {
                 },
               })
             }
+            placeholder={
+              transactionType === "crypto" ? "Block Number" : "Reference Number"
+            }
             style={{
               padding: "8px",
               borderRadius: "4px",
               border: "1px solid #ccc",
             }}
+            type="text"
+            value={newTransaction.details.blockNumber}
           />
 
           <button
@@ -271,8 +271,8 @@ export default function Editor(props: IProps) {
       <div>
         {getSortedTransactions().map((transaction) => (
           <div
-            key={transaction.id}
             className={styles.transactionItem}
+            key={transaction.id}
             style={{
               padding: "15px",
               border: "1px solid #ccc",
@@ -302,9 +302,9 @@ export default function Editor(props: IProps) {
                     Hash:{" "}
                     <a
                       href={`https://basescan.org/tx/${transaction.details.crypto.txHash}`}
-                      target="_blank"
                       rel="noopener noreferrer"
                       style={{ color: "#007bff" }}
+                      target="_blank"
                     >
                       {transaction.details.crypto.txHash}
                     </a>
@@ -318,9 +318,9 @@ export default function Editor(props: IProps) {
                     Block:{" "}
                     <a
                       href={`https://basescan.org/block/${transaction.details.crypto.blockNumber}`}
-                      target="_blank"
                       rel="noopener noreferrer"
                       style={{ color: "#007bff" }}
+                      target="_blank"
                     >
                       {transaction.details.crypto.blockNumber}
                     </a>
@@ -350,8 +350,6 @@ export default function Editor(props: IProps) {
                   }}
                 >
                   <input
-                    type="text"
-                    value={editingBudget.budget}
                     onChange={(e) =>
                       setEditingBudget({
                         ...editingBudget,
@@ -364,6 +362,8 @@ export default function Editor(props: IProps) {
                       borderRadius: "4px",
                       border: "1px solid #ccc",
                     }}
+                    type="text"
+                    value={editingBudget.budget}
                   />
                   <button
                     onClick={() => handleUpdateBudget(transaction.id)}

@@ -1,7 +1,7 @@
 import { ExtendedEditor, EditorContextProps } from "document-model-libs";
 import Editor from "./editor";
 
-export const module: ExtendedEditor<unknown, Action, unknown, unknown> = {
+export const module: ExtendedEditor<unknown, Action> = {
   Component: Editor,
   documentTypes: ["powerhouse/account-transactions"],
   config: {

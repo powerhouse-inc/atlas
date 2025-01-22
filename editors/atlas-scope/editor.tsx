@@ -8,7 +8,7 @@ import {
 } from "@powerhousedao/design-system/scalars";
 import { AtlasScopeScopeOperations } from "document-models/atlas-scope/gen/scope/operations";
 import { actions } from "../../document-models/atlas-scope";
-import { useEffect } from 'react';
+import { useEffect } from "react";
 
 export type IProps = EditorProps<unknown, Action, AtlasScopeScopeOperations>;
 
@@ -19,17 +19,17 @@ export default function Editor(props: IProps) {
   } = document;
 
   useEffect(() => {
-    console.log('State updated:', state);
+    console.log("State updated:", state);
   }, [state]);
 
   const handleSubmit = (values: Record<string, any>) => {
-    console.log('Values:', values);
+    console.log("Values:", values);
     // Check if masterStatus or globalTags have changed
     if (values.masterStatus !== state.masterStatus) {
       dispatch(
         actions.updateScope({
-          masterStatus: values.masterStatus
-        })
+          masterStatus: values.masterStatus,
+        }),
       );
       return;
     }
@@ -37,8 +37,8 @@ export default function Editor(props: IProps) {
     if (values.globalTags !== state.globalTags) {
       dispatch(
         actions.updateScope({
-          globalTags: values.globalTags
-        })
+          globalTags: values.globalTags,
+        }),
       );
       return;
     }
