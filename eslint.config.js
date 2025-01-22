@@ -5,6 +5,7 @@ import globals from "globals";
 import tseslint from "typescript-eslint";
 import hooksPlugin from "eslint-plugin-react-hooks";
 
+/** @type {import('@typescript-eslint/utils/ts-eslint').FlatConfig[]} */
 export default tseslint.config(
   eslint.configs.recommended,
 
