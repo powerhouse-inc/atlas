@@ -10,3 +10,4 @@
 .env
 
 bun.lockb
+*storybook.log

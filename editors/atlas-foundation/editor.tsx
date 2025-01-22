@@ -5,7 +5,7 @@ import {
   Form,
   StringField,
   UrlField,
-} from "@powerhousedao/design-system/dist/scalars";
+} from "@powerhousedao/design-system/scalars";
 import { AtlasFoundationArticleOperations } from "document-models/atlas-foundation/gen/article/operations";
 import { actions } from "../../document-models/atlas-foundation";
 import { useEffect } from 'react';
