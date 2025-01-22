@@ -27,7 +27,6 @@ export default tseslint.config(
   {
     files: ["**/*.{js,jsx,mjs,cjs,ts,tsx}"],
     plugins: {
-      // eslint-disable-next-line @typescript-eslint/no-unsafe-assignment
       "react-hooks": hooksPlugin,
     },
     languageOptions: {
@@ -47,9 +46,7 @@ export default tseslint.config(
         version: "detect",
       },
     },
-    // eslint-disable-next-line @typescript-eslint/no-unsafe-assignment
     rules: {
-      // eslint-disable-next-line @typescript-eslint/no-unsafe-member-access
       ...hooksPlugin.configs.recommended.rules,
       "react/destructuring-assignment": "off",
       "react/function-component-definition": "off",

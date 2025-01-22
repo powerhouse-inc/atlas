@@ -20,16 +20,18 @@
 
         "document-models/": ["./document-models/index.ts"],
         "document-models/*": ["./document-models/*"],
+        "editors/": ["./editors/index.ts"],
         "editors/*": ["./editors/*"],
+        "processors/": ["./processors/index.ts"],
+        "processors/*": ["./processors/*"],
       }
   },
   "include": [
       "./index.ts",
-      "**/*.ts",
-      "**/*.tsx",
-      "*.config.js",
-      "*.config.ts",
-      ".storybook/**/*",
-  ],
-  "exclude": ["dist/", "node_modules"],
+      "./vite.config.ts",
+      "./document-models/**/*",
+      "./editors/**/*",
+      "./processors/**/*",
+      "./.storybook/**/*",
+  ]
 }
