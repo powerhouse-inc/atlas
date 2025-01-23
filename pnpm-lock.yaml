@@ -113,7 +113,7 @@ importers:
         version: 1.10.0(@types/node@22.10.7)
       '@powerhousedao/connect':
         specifier: 1.0.0-dev.190
-        version: link:../connect
+        version: 1.0.0-dev.190(@powerhousedao/design-system@1.21.0(@tanstack/query-core@5.64.2)(@types/react@18.3.18)(bufferutil@4.0.9)(encoding@0.1.13)(graphql@16.10.0)(react-dom@18.3.1(react@18.3.1))(react@18.3.1)(tailwindcss@3.4.17)(typescript@5.7.3)(utf-8-validate@5.0.10))(@powerhousedao/scalars@1.18.0(graphql@16.10.0)(zod@3.24.1))(@types/node@22.10.7)(document-model-libs@1.127.0(@codemirror/language@6.10.8)(@codemirror/state@6.5.1)(@codemirror/view@6.36.2)(@types/react@18.3.18)(graphql@16.10.0)(react-dom@18.3.1(react@18.3.1))(react@18.3.1))
       '@powerhousedao/design-system':
         specifier: 1.21.0
         version: 1.21.0(@tanstack/query-core@5.64.2)(@types/react@18.3.18)(bufferutil@4.0.9)(encoding@0.1.13)(graphql@16.10.0)(react-dom@18.3.1(react@18.3.1))(react@18.3.1)(tailwindcss@3.4.17)(typescript@5.7.3)(utf-8-validate@5.0.10)
@@ -2213,6 +2213,15 @@ packages:
 
   '@powerhousedao/connect@1.0.0-dev.189':
     resolution: {integrity: sha512-iR9OcZz+XUJiDu7gt419MgJu9j+u9MxVT9bzQiQ37bF+etITNEZFCdL8dHyC4VwNmokYvXJ5EKHlfYGF+ub4Eg==}
+    engines: {node: '>=18.0.0'}
+    hasBin: true
+    peerDependencies:
+      '@powerhousedao/design-system': latest
+      '@powerhousedao/scalars': latest
+      document-model-libs: latest
+
+  '@powerhousedao/connect@1.0.0-dev.190':
+    resolution: {integrity: sha512-cLRSQdrqB9NnBoW/FSFlrK6vEN1TL2r9zvDibyqX7yOu5mibq2sbVagBCxwgcjEOWrSKy0XEAICWGwXCOG/ivA==}
     engines: {node: '>=18.0.0'}
     hasBin: true
     peerDependencies:
@@ -10770,6 +10779,27 @@ snapshots:
       - '@types/node'
 
   '@powerhousedao/connect@1.0.0-dev.189(@powerhousedao/design-system@1.21.0(@tanstack/query-core@5.64.2)(@types/react@18.3.18)(bufferutil@4.0.9)(encoding@0.1.13)(graphql@16.10.0)(react-dom@18.3.1(react@18.3.1))(react@18.3.1)(tailwindcss@3.4.17)(typescript@5.7.3)(utf-8-validate@5.0.10))(@powerhousedao/scalars@1.18.0(graphql@16.10.0)(zod@3.24.1))(@types/node@22.10.7)(document-model-libs@1.127.0(@codemirror/language@6.10.8)(@codemirror/state@6.5.1)(@codemirror/view@6.36.2)(@types/react@18.3.18)(graphql@16.10.0)(react-dom@18.3.1(react@18.3.1))(react@18.3.1))':
+    dependencies:
+      '@powerhousedao/design-system': 1.21.0(@tanstack/query-core@5.64.2)(@types/react@18.3.18)(bufferutil@4.0.9)(encoding@0.1.13)(graphql@16.10.0)(react-dom@18.3.1(react@18.3.1))(react@18.3.1)(tailwindcss@3.4.17)(typescript@5.7.3)(utf-8-validate@5.0.10)
+      '@powerhousedao/scalars': 1.18.0(graphql@16.10.0)(zod@3.24.1)
+      commander: 12.1.0
+      document-model-libs: 1.127.0(@codemirror/language@6.10.8)(@codemirror/state@6.5.1)(@codemirror/view@6.36.2)(@types/react@18.3.18)(graphql@16.10.0)(react-dom@18.3.1(react@18.3.1))(react@18.3.1)
+      vite: 5.4.14(@types/node@22.10.7)
+      vite-envs: 4.4.10
+    optionalDependencies:
+      '@esbuild/linux-x64': 0.21.5
+      '@rollup/rollup-linux-x64-musl': 4.14.3
+    transitivePeerDependencies:
+      - '@types/node'
+      - less
+      - lightningcss
+      - sass
+      - sass-embedded
+      - stylus
+      - sugarss
+      - terser
+
+  '@powerhousedao/connect@1.0.0-dev.190(@powerhousedao/design-system@1.21.0(@tanstack/query-core@5.64.2)(@types/react@18.3.18)(bufferutil@4.0.9)(encoding@0.1.13)(graphql@16.10.0)(react-dom@18.3.1(react@18.3.1))(react@18.3.1)(tailwindcss@3.4.17)(typescript@5.7.3)(utf-8-validate@5.0.10))(@powerhousedao/scalars@1.18.0(graphql@16.10.0)(zod@3.24.1))(@types/node@22.10.7)(document-model-libs@1.127.0(@codemirror/language@6.10.8)(@codemirror/state@6.5.1)(@codemirror/view@6.36.2)(@types/react@18.3.18)(graphql@16.10.0)(react-dom@18.3.1(react@18.3.1))(react@18.3.1))':
     dependencies:
       '@powerhousedao/design-system': 1.21.0(@tanstack/query-core@5.64.2)(@types/react@18.3.18)(bufferutil@4.0.9)(encoding@0.1.13)(graphql@16.10.0)(react-dom@18.3.1(react@18.3.1))(react@18.3.1)(tailwindcss@3.4.17)(typescript@5.7.3)(utf-8-validate@5.0.10)
       '@powerhousedao/scalars': 1.18.0(graphql@16.10.0)(zod@3.24.1)
