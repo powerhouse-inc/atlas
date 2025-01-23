@@ -24,7 +24,7 @@ import {
   editGroupTransaction,
   editGroupTransactionFees,
   removeFeesFromGroupTransaction,
-} from "../../../document-models/rwa-portfolio/gen/creators";
+} from "../../../document-models/real-world-assets/gen/creators";
 import diff from "microdiff";
 import { useCallback } from "react";
 import { verifyTransactionFeeFields } from "../utils";
@@ -38,7 +38,7 @@ import {
   actions,
   isFixedIncomeAsset,
   RealWorldAssetsState,
-} from "../../../document-models/rwa-portfolio";
+} from "../../../document-models/real-world-assets";
 
 type Args = {
   state: RealWorldAssetsState;

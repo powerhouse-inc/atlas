@@ -1,5 +1,5 @@
 import { InputMaybe } from "document-model/document-model";
-import { Cash } from "document-models/rwa-portfolio/gen";
+import { Cash } from "document-models/real-world-assets/gen";
 import { Asset, FixedIncome, RealWorldAssetsState } from "../../..";
 import { dateValidator, numberValidator } from "./zod";
 

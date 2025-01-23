@@ -18,7 +18,7 @@ import {
   sumAssetTransactionsForType,
   sumCashTransactionsForType,
   sumGroupTransactionFees,
-} from "document-models/rwa-portfolio";
+} from "document-models/real-world-assets";
 import { describe, expect, it } from "vitest";
 import {
   ASSET_PURCHASE,

@@ -8,13 +8,13 @@ import {
   RealWorldAssetsState,
   reducer,
   utils,
-} from "../../document-models/rwa-portfolio";
+} from "../../document-models/real-world-assets";
 import Editor from "./editor";
 import {
   mockCashTransaction,
   mockStateInitial,
   mockStateWithData,
-} from "../../document-models/rwa-portfolio/mock-data/initial-state";
+} from "../../document-models/real-world-assets/mock-data/initial-state";
 import { v7 as uuidv7 } from "uuid";
 import { Meta } from "@storybook/react";
 

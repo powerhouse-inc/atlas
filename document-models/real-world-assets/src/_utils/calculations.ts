@@ -5,7 +5,7 @@ import {
   GroupTransactionType,
   InputMaybe,
   TransactionFee,
-} from "document-models/rwa-portfolio";
+} from "document-models/real-world-assets";
 import { all, BigNumber, create } from "mathjs";
 import {
   ASSET_PURCHASE,

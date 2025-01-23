@@ -1,5 +1,5 @@
 import { TransactionFeeInput } from "@powerhousedao/design-system";
-import { TransactionFee } from "../../document-models/rwa-portfolio";
+import { TransactionFee } from "../../document-models/real-world-assets";
 
 export function verifyTransactionFeeFields(
   fees: TransactionFeeInput[],
