@@ -1,19 +1,19 @@
 import {
-    createDocumentStory,
-    EditorStoryComponent,
+  createDocumentStory,
+  EditorStoryComponent,
 } from "document-model-libs/utils";
 import {
-    RealWorldAssetsAction,
-    RealWorldAssetsLocalState,
-    RealWorldAssetsState,
-    reducer,
-    utils,
+  RealWorldAssetsAction,
+  RealWorldAssetsLocalState,
+  RealWorldAssetsState,
+  reducer,
+  utils,
 } from "../../document-models/rwa-portfolio";
 import Editor from "./editor";
 import {
-    mockCashTransaction,
-    mockStateInitial,
-    mockStateWithData,
+  mockCashTransaction,
+  mockStateInitial,
+  mockStateWithData,
 } from "../../document-models/rwa-portfolio/mock-data/initial-state";
 import { v7 as uuidv7 } from "uuid";
 import { Meta } from "@storybook/react";

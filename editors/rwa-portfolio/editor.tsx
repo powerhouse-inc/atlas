@@ -1,15 +1,15 @@
 import { actions, EditorProps } from "document-model/document";
 import {
-    RealWorldAssetsAction,
-    RealWorldAssetsLocalState,
-    RealWorldAssetsState,
+  RealWorldAssetsAction,
+  RealWorldAssetsLocalState,
+  RealWorldAssetsState,
 } from "document-models/rwa-portfolio";
 import { useEditorDispatcher } from "./hooks/useEditorDispatcher";
 import { useCallback } from "react";
 import {
-    RWAEditor,
-    RWAEditorContextProps,
-    RWAEditorContextProvider,
+  RWAEditor,
+  RWAEditorContextProps,
+  RWAEditorContextProvider,
 } from "@powerhousedao/design-system";
 
 export type IProps = EditorProps<
