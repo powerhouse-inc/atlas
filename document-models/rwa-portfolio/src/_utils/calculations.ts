@@ -1,16 +1,16 @@
 import {
-    FixedIncome,
-    FixedIncomeType,
-    GroupTransaction,
-    GroupTransactionType,
-    InputMaybe,
-    TransactionFee,
+  FixedIncome,
+  FixedIncomeType,
+  GroupTransaction,
+  GroupTransactionType,
+  InputMaybe,
+  TransactionFee,
 } from "document-models/rwa-portfolio";
 import { all, BigNumber, create } from "mathjs";
 import {
-    ASSET_PURCHASE,
-    ASSET_SALE,
-    cashTransactionSignByTransactionType,
+  ASSET_PURCHASE,
+  ASSET_SALE,
+  cashTransactionSignByTransactionType,
 } from "../constants";
 
 export const math = create(all, {

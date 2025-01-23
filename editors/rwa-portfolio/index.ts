@@ -1,11 +1,11 @@
 import { RWAEditorContextProps } from "@powerhousedao/design-system";
 import type {
-    RealWorldAssetsState,
-    RealWorldAssetsLocalState,
-    RealWorldAssetsAction,
+  RealWorldAssetsState,
+  RealWorldAssetsLocalState,
+  RealWorldAssetsAction,
 } from "../../document-models/rwa-portfolio";
-import type { ExtendedEditor } from "../types";
 import { lazyWithPreload } from "document-model-libs/utils";
+import { ExtendedEditor } from "document-model-libs";
 
 export const module: ExtendedEditor<
   RealWorldAssetsState,

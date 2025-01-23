@@ -16,7 +16,7 @@ export const addFolder = (
   driveId: string,
   nodeId: string,
   nodeName: string,
-  parentFolder: string | undefined = undefined
+  parentFolder: string | undefined = undefined,
 ) => {
   return driveServer.addDriveAction(
     driveId,
@@ -24,7 +24,7 @@ export const addFolder = (
       id: nodeId,
       name: nodeName,
       parentFolder: parentFolder,
-    })
+    }),
   );
 };
 
@@ -34,7 +34,7 @@ export const addDocument = async (
   documentId: string,
   documentName: string,
   documentType: string,
-  parentFolder: string
+  parentFolder: string,
 ) => {
   const drive = await driveServer.getDrive(driveId);
   return driveServer.addDriveAction(
@@ -47,7 +47,7 @@ export const addDocument = async (
       synchronizationUnits: generateSynchronizationUnits(drive.state.global, [
         "global",
       ]),
-    })
+    }),
   );
 };
 

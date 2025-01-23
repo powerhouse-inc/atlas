@@ -22,7 +22,6 @@ export default tseslint.config(
       "build/",
       "storybook-static/",
       "coverage/",
-      "scripts/",
     ],
   },
   {

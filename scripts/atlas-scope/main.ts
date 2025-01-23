@@ -12,11 +12,11 @@ import { addArticles, populateScope } from "scripts/utils/atlas-actions";
 import { DocumentDriveDocument } from "document-model-libs/document-drive";
 import { IBaseDocumentDriveServer } from "document-drive";
 async function main() {
-  console.time('...duration')
-  console.log('Creating Atlas Documents...')
+  console.time("...duration");
+  console.log("Creating Atlas Documents...");
 
   const driveServer = (await createReactorAndCreateLocalDrive(
-    "http://localhost:4001/d/powerhouse"
+    "http://localhost:4001/d/powerhouse",
   )) as IBaseDocumentDriveServer;
 
   const driveIds = await driveServer.getDrives();
@@ -28,15 +28,15 @@ async function main() {
   drive = await driveServer.getDrive(driveIds[0]);
   // console.log(drive.state.global.nodes);
   const rootDirId = drive.state.global.nodes.find(
-    (e) => e.name === "Sky Atlas Docs"
+    (e) => e.name === "Sky Atlas Docs",
   );
   if (!rootDirId) {
     throw new Error("Root directory not found");
   }
 
   // create section 1 folders and documents
-  for (let entry of Object.entries(jsonScopes).sort((a, b) =>
-    a[1].docNoString.localeCompare(b[1].docNoString)
+  for (const entry of Object.entries(jsonScopes).sort((a, b) =>
+    a[1].docNoString.localeCompare(b[1].docNoString),
   )) {
     const [key, scope] = entry;
     const result = await addFolder(
@@ -44,7 +44,7 @@ async function main() {
       driveIds[0],
       scope.id + "-folder",
       `${scope.docNoString} ${scope.nameString}`,
-      rootDirId.id
+      rootDirId.id,
     );
 
     await addDocument(
@@ -53,7 +53,7 @@ async function main() {
       scope.id + "-document",
       `${scope.docNoString} ${scope.nameString}`,
       "sky/atlas-scope",
-      scope.id + "-folder"
+      scope.id + "-folder",
     );
 
     const notionScope = notionScopes.find((s: any) => s.id === scope.id);
@@ -63,7 +63,7 @@ async function main() {
       scope.id + "-document",
       scope,
       notionScope?.url,
-      jsonMasterStatus
+      jsonMasterStatus,
     );
 
     await addArticles(
@@ -72,13 +72,13 @@ async function main() {
       scope.id + "-document",
       scope.children,
       notionArticles,
-      scope
+      scope,
     );
   }
 
   await sleep(1000);
 
-  console.timeEnd('...duration')
+  console.timeEnd("...duration");
   process.exit(0);
 }
 

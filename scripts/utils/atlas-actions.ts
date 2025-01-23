@@ -9,7 +9,7 @@ export const populateScope = (
   documentId: string,
   scope: any,
   provenanceUrl: string | undefined,
-  jsonMasterStatus: any
+  jsonMasterStatus: any,
 ) => {
   return driveServer.addAction(
     driveId,
@@ -32,7 +32,7 @@ export const populateScope = (
       originalContextData: ["somePHID"],
       provenance: provenanceUrl,
       notionId: scope.id,
-    })
+    }),
   );
 };
 
@@ -41,17 +41,17 @@ export const populateArticle = (
   driveId: string,
   documentId: string,
   article: any,
-  scope: any
+  scope: any,
 ) => {
   return driveServer.addAction(
     driveId,
     documentId,
     atlasFoundationActions.populateFoundation({
-      name: article.properties["Name"].rich_text[0].plain_text,
+      name: article.properties.Name.rich_text[0].plain_text,
       docNo: article.properties["Doc No"].title[0].plain_text,
       parent: scope.id,
       atlasType: "ARTICLE",
-      content: article.properties["Content"].rich_text[0].plain_text,
+      content: article.properties.Content.rich_text[0].plain_text,
       masterStatus: "PLACEHOLDER",
       globalTags: ["CAIS"],
       references: [],
@@ -60,7 +60,7 @@ export const populateArticle = (
       ].relation.map((r: any) => r.id),
       provenance: article.url,
       notionId: article.id,
-    })
+    }),
   );
 };
 
@@ -70,7 +70,7 @@ export const addArticles = async (
   documentId: string,
   articlesIds: any[],
   notionArticles: any[],
-  scope: any
+  scope: any,
 ) => {
   for (const articleObj of articlesIds) {
     const article = notionArticles.find((a: any) => a.id === articleObj.id);
@@ -82,16 +82,16 @@ export const addArticles = async (
       driveServer,
       driveId,
       article.id + "-folder",
-      `${article.properties["Doc No"].title[0].plain_text} ${article.properties["Name"].rich_text[0].plain_text}`,
-      scope.id + "-folder"
+      `${article.properties["Doc No"].title[0].plain_text} ${article.properties.Name.rich_text[0].plain_text}`,
+      scope.id + "-folder",
     );
     await addDocument(
       driveServer,
       driveId,
       article.id + "-document",
-      `${article.properties["Doc No"].title[0].plain_text} ${article.properties["Name"].rich_text[0].plain_text}`,
+      `${article.properties["Doc No"].title[0].plain_text} ${article.properties.Name.rich_text[0].plain_text}`,
       "sky/atlas-foundation",
-      article.id + "-folder"
+      article.id + "-folder",
     );
 
     const result = await populateArticle(
@@ -99,7 +99,7 @@ export const addArticles = async (
       driveId,
       article.id + "-document",
       article,
-      scope
+      scope,
     );
   }
 };
