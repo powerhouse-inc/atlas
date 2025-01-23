@@ -1,6 +1,6 @@
 {
   "name": "@sky-ph/atlas",
-  "version": "1.0.3",
+  "version": "1.0.4",
   "license": "AGPL-3.0-only",
   "types": "dist/index.d.ts",
   "main": "dist/index.cjs",
@@ -29,7 +29,7 @@
   "scripts": {
     "generate": "powerhouse generate",
     "reactor": "ph reactor",
-    "dev": "ph dev",
+    "dev": "ph-cli dev --config-file ./powerhouse.config.json",
     "check-types": "tsc",
     "postlint": "npm run check-types",
     "lint": "eslint",
@@ -55,7 +55,7 @@
     "@powerhousedao/analytics-engine-core": "^0.3.2",
     "@powerhousedao/codegen": "^0.31.0",
     "@powerhousedao/config": "1.10.0",
-    "@powerhousedao/connect": "1.0.0-dev.190",
+    "@powerhousedao/connect": "1.0.0-dev.192",
     "@powerhousedao/design-system": "1.21.0",
     "@powerhousedao/mips-parser": "2.2.2-alpha.0",
     "@powerhousedao/ph-cli": "0.21.0",
