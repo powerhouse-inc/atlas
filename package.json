@@ -1,6 +1,6 @@
 {
   "name": "@sky-ph/atlas",
-  "version": "1.0.9",
+  "version": "1.0.10",
   "license": "AGPL-3.0-only",
   "types": "dist/index.d.ts",
   "main": "dist/cjs/index.js",
