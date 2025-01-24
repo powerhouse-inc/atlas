@@ -1,6 +1,6 @@
 {
     "id": "makerdao/feedback-issues",
-    "name": "Atlas Feedback Issues",
+    "name": "AtlasFeedbackIssues",
     "extension": ".phdm",
     "description": "Provide feedback on the data presented in the Atlas in a decentralized way.",
     "author": {
