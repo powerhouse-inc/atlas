@@ -56,7 +56,7 @@
     "@powerhousedao/codegen": "^0.31.3",
     "@powerhousedao/config": "1.12.0",
     "@powerhousedao/connect": "1.0.0-dev.192",
-    "@powerhousedao/design-system": "1.21.3",
+    "@powerhousedao/design-system": "1.22.0",
     "@powerhousedao/mips-parser": "2.2.2-alpha.0",
     "@powerhousedao/ph-cli": "0.25.0",
     "@powerhousedao/reactor-api": "^1.16.3",
