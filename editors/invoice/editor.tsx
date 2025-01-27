@@ -23,9 +23,10 @@ import { LegalEntityForm } from "./legalEntity";
 import { LineItemsTable } from "./lineItems";
 import { loadUBLFile } from "./ingestUBL";
 import { e } from "mathjs";
+import RequestFinance from "./requestFinance";
 
 export default function Editor(
-  props: EditorProps<InvoiceState, InvoiceAction, InvoiceLocalState>,
+  props: EditorProps<InvoiceState, InvoiceAction, InvoiceLocalState>
 ) {
   const { document, dispatch } = props;
   const state = document.state.global;
@@ -58,7 +59,7 @@ export default function Editor(
     dispatch(
       actions.editInvoice({
         dateIssued: e.target.value,
-      }),
+      })
     );
   }
 
@@ -66,7 +67,7 @@ export default function Editor(
     dispatch(
       actions.editInvoice({
         dateDue: e.target.value,
-      }),
+      })
     );
   }
 
@@ -74,7 +75,7 @@ export default function Editor(
     dispatch(
       actions.editInvoice({
         invoiceNo: e.target.value,
-      }),
+      })
     );
   }
 
@@ -139,7 +140,7 @@ export default function Editor(
   ];
 
   const handleFileUpload = async (
-    event: React.ChangeEvent<HTMLInputElement>,
+    event: React.ChangeEvent<HTMLInputElement>
   ) => {
     const file = event.target.files?.[0];
     if (!file) return;
@@ -272,6 +273,17 @@ export default function Editor(
           </div>
         </div>
       </div>
+      {/* Send payment request */}
+      <div>
+        <RequestFinance docState={state} />
+      </div>
+      {/* JSON representation of the state */}
+      {/* <div className="mt-6 rounded-lg border border-gray-200 bg-gray-50 p-4">
+        <h3 className="text-xl font-semibold">State JSON</h3>
+        <pre className="whitespace-pre-wrap break-words text-sm text-gray-600">
+          {JSON.stringify(state, null, 2)}
+        </pre>
+      </div> */}
     </div>
   );
 }
