@@ -43,8 +43,8 @@ router.post('/create-invoice', async (req, res) => {
         }
 
     } catch (error) {
-        console.error('Error creating invoice:', error);
-        res.status(500).json({ error: 'Failed to create invoice' });
+        console.error('Error creating invoice: error.response', error.response.data);
+        res.status(500).json({ error: 'Failed to create invoice', errors: error.response.data.errors });
     }
 });
 

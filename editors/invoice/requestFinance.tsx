@@ -12,6 +12,7 @@ const RequestFinance: React.FC<RequestFinanceProps> = ({ docState }) => {
   const [invoiceLink, setInvoiceLink] = useState<string | null>(null);
 
   const handleRequestFinance = async () => {
+    console.log("state when request finance is clicked", docState);
     setIsLoading(true);
     setError(null);
     setInvoiceLink(null);
@@ -45,8 +46,8 @@ const RequestFinance: React.FC<RequestFinanceProps> = ({ docState }) => {
               value: {
                 currencies: ["EURe"],
                 paymentInformation: {
-                  paymentAddress: "0xadbA7C2F82139031D7564D18aC22D09B12A0BcA4",
-                  chain: "mainnet",
+                  paymentAddress: "0x4714C7EfE5D0213615FC6CBB8717B524eC433e9a",
+                  chain: "xdai",
                 },
               },
             },
