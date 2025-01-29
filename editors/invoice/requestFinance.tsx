@@ -72,11 +72,11 @@ const RequestFinance: React.FC<RequestFinanceProps> = ({ docState }) => {
   return (
     <div>
       <button
-        className="bg-blue-500 text-white px-4 py-2 rounded-md"
+        className="bg-blue-500 text-black px-4 py-2 rounded-md"
         onClick={handleRequestFinance}
         disabled={isLoading}
       >
-        {isLoading ? "Processing..." : "Send Payment to Request Finance"}
+        {isLoading ? "Processing..." : "Send Payment to Request Finance >"}
       </button>
 
       {error && <div className="error-message">{error}</div>}

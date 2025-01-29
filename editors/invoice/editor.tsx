@@ -24,6 +24,7 @@ import { LineItemsTable } from "./lineItems";
 import { loadUBLFile } from "./ingestUBL";
 import { e } from "mathjs";
 import RequestFinance from "./requestFinance";
+import InvoiceToGnosis from "./invoiceToGnosis";
 
 export default function Editor(
   props: EditorProps<InvoiceState, InvoiceAction, InvoiceLocalState>
@@ -273,10 +274,17 @@ export default function Editor(
           </div>
         </div>
       </div>
-      {/* Send payment request */}
-      <div>
-        <RequestFinance docState={state} />
-      </div>
+      {state.currency === "USDS" ? (
+        <div>
+          <br />
+          <InvoiceToGnosis docState={state} />
+        </div>
+      ) : (
+        <div>
+          <br />
+          <RequestFinance docState={state} />
+        </div>
+      )}
       {/* JSON representation of the state */}
       {/* <div className="mt-6 rounded-lg border border-gray-200 bg-gray-50 p-4">
         <h3 className="text-xl font-semibold">State JSON</h3>

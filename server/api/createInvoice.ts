@@ -1,5 +1,6 @@
 import express from 'express';
 import axios from 'axios';
+import { executeTokenTransfer } from './gnosisTransactionBuilder'
 
 const router = express.Router();
 
@@ -44,6 +45,16 @@ router.post('/create-invoice', async (req, res) => {
     } catch (error) {
         console.error('Error creating invoice:', error);
         res.status(500).json({ error: 'Failed to create invoice' });
+    }
+});
+
+router.post('/transfer', async (req, res) => {
+    try {
+        const { payerWallet, paymentDetails } = req.body;
+        const result = await executeTokenTransfer(payerWallet, paymentDetails);
+        res.json(result);
+    } catch (error) {
+        res.status(500).json({ error: error.message });
     }
 });
 
