@@ -62,7 +62,6 @@ const InvoiceToGnosis: React.FC<InvoiceToGnosisProps> = ({ docState }) => {
   }
 
   const handleInvoiceToGnosis = async () => {
-    console.log("docState", docState);
     setIsLoading(true);
     setError(null);
     setTransactionLink(null);
@@ -104,16 +103,16 @@ const InvoiceToGnosis: React.FC<InvoiceToGnosisProps> = ({ docState }) => {
 
       {transactionLink && (
         <div className="invoice-link">
-          {/* <a
+          <p>Safe Transaction Hash: {transactionLink}</p>
+          <a
             style={{ color: "blue" }}
-            href={transactionLink}
+            href={'https://app.safe.global/transactions/queue?safe=base:0x1FB6bEF04230d67aF0e3455B997a28AFcCe1F45e'}
             target="_blank"
             rel="noopener noreferrer"
             className="view-invoice-button"
           >
             View Transaction Details
-          </a> */}
-          <p>Safe Transaction Hash: {transactionLink}</p>
+          </a>
         </div>
       )}
     </div>
