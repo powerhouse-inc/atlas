@@ -31,6 +31,7 @@ export default function Editor(
 ) {
   const { document, dispatch } = props;
   const state = document.state.global;
+  console.log("state", state);
 
   const itemsTotalTaxExcl = useMemo(() => {
     return state.lineItems.reduce((total, lineItem) => {
@@ -274,17 +275,19 @@ export default function Editor(
           </div>
         </div>
       </div>
-      {state.currency === "USDS" ? (
-        <div>
-          <br />
-          <InvoiceToGnosis docState={state} />
-        </div>
-      ) : (
-        <div>
-          <br />
-          <RequestFinance docState={state} />
-        </div>
-      )}
+      {state.status === "ACCEPTED" ? (
+        state.currency === "USDS" ? (
+          <div>
+            <br />
+            <InvoiceToGnosis docState={state} />
+          </div>
+        ) : (
+          <div>
+            <br />
+            <RequestFinance docState={state} />
+          </div>
+        )
+      ) : null}
       {/* JSON representation of the state */}
       {/* <div className="mt-6 rounded-lg border border-gray-200 bg-gray-50 p-4">
         <h3 className="text-xl font-semibold">State JSON</h3>
