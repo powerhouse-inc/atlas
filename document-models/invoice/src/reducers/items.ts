@@ -73,11 +73,11 @@ function validatePrices(item: InvoiceLineItem) {
   const calcPriceExcl = item.quantity * item.unitPriceTaxExcl;
 
   // Validate that calculated totals match input totals
-  if (calcPriceIncl !== item.totalPriceTaxIncl) {
+  if (calcPriceIncl.toFixed(2) !== item.totalPriceTaxIncl.toFixed(2)) {
     throw new Error("Calculated unitPriceTaxIncl does not match input total");
   }
 
-  if (calcPriceExcl !== item.totalPriceTaxExcl) {
+  if (calcPriceExcl.toFixed(2) !== item.totalPriceTaxExcl.toFixed(2)) {
     throw new Error("Calculated unitPriceTaxExcl does not match input total");
   }
 
