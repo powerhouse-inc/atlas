@@ -12,7 +12,6 @@ const RequestFinance: React.FC<RequestFinanceProps> = ({ docState }) => {
   const [invoiceLink, setInvoiceLink] = useState<string | null>(null);
 
   const handleRequestFinance = async () => {
-    console.log("docState", docState);
     setIsLoading(true);
     setError(null);
     setInvoiceLink(null);

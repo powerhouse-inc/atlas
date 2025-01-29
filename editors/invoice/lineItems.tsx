@@ -27,7 +27,7 @@ type EditableLineItemProps = {
 
 const EditableLineItem = forwardRef(function EditableLineItem(
   props: EditableLineItemProps,
-  ref: React.Ref<HTMLTableRowElement>,
+  ref: React.Ref<HTMLTableRowElement>
 ) {
   const { item, onSave, onCancel, currency } = props;
   const [editedItem, setEditedItem] = useState<Partial<LineItem>>({
@@ -136,6 +136,7 @@ const EditableLineItem = forwardRef(function EditableLineItem(
       <td className="border border-gray-200 p-3">
         <div className="flex space-x-2">
           <button
+            style={{ backgroundColor: "blue" }}
             className="rounded bg-blue-600 px-3 py-1 text-white hover:bg-blue-700"
             onClick={handleSave}
           >
@@ -283,6 +284,7 @@ export function LineItemsTable({
                   <td className="border-b border-gray-200 p-3">
                     <div className="flex justify-center space-x-2">
                       <button
+                        style={{ backgroundColor: "lightblue" }}
                         className="rounded bg-blue-600 px-3 py-1 text-white hover:bg-blue-700"
                         onClick={() => setEditingId(item.id)}
                       >
@@ -297,7 +299,7 @@ export function LineItemsTable({
                     </div>
                   </td>
                 </tr>
-              ),
+              )
             )}
             {isAddingNew ? (
               <EditableLineItem
