@@ -205,6 +205,7 @@ export function LineItemsTable({
             >
               <option value="USD">USD</option>
               <option value="USDS">USDS</option>
+              <option value="USDC">USDC</option>
               <option value="EUR">EUR</option>
               <option value="GBP">GBP</option>
               <option value="JPY">JPY</option>
