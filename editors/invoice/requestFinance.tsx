@@ -46,7 +46,7 @@ const RequestFinance: React.FC<RequestFinanceProps> = ({ docState }) => {
               value: {
                 currencies: ["EURe"],
                 paymentInformation: {
-                  paymentAddress: "0x4714C7EfE5D0213615FC6CBB8717B524eC433e9a",
+                  paymentAddress: docState.issuer.paymentRouting.wallet.address || "0x4714C7EfE5D0213615FC6CBB8717B524eC433e9a",
                   chain: "xdai",
                 },
               },
