@@ -50,12 +50,12 @@ const InvoiceToGnosis: React.FC<InvoiceToGnosisProps> = ({ docState }) => {
     const networkTokens =
       TOKEN_ADDRESSES[chainName.toUpperCase() as keyof typeof TOKEN_ADDRESSES];
     if (!networkTokens) {
-      throw new Error(`Network ${chainName} not supported`);
+      console.error(`Network ${chainName} not supported`);
     }
 
     const tokenAddress = networkTokens[symbol as keyof typeof networkTokens];
     if (!tokenAddress) {
-      throw new Error(`Token ${symbol} not supported on ${chainName}`);
+      console.error(`Token ${symbol} not supported on ${chainName}`);
     }
 
     return tokenAddress;

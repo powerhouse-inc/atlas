@@ -155,6 +155,10 @@ export default function Editor(
     }
   };
 
+  const handleReset = () => {
+    dispatch(actions.editStatus({ status: "DRAFT" }));
+  };
+
   return (
     <div className="p-6">
       <div className="mb-6 flex items-center justify-between">
@@ -277,10 +281,27 @@ export default function Editor(
       </div>
       {state.status === "ACCEPTED" ? (
         state.currency === "USDS" ? (
-          <div>
-            <br />
-            <InvoiceToGnosis docState={state} />
-          </div>
+          state.issuer.paymentRouting?.wallet?.chainName === "base" ? (
+            <div>
+              <br />
+              <InvoiceToGnosis docState={state} />
+            </div>
+          ) : (
+            <div>
+              <br />
+              <div className="fixed inset-0 flex items-center justify-center z-50">
+                <div className="bg-red-500 text-white p-6 rounded-lg shadow-lg relative">
+                  <button
+                    className="absolute top-2 right-2 text-white"
+                    onClick={handleReset}
+                  >
+                    &times;
+                  </button>
+                  <h1>Use 'base' chain name instead</h1>
+                </div>
+              </div>
+            </div>
+          )
         ) : (
           <div>
             <br />
