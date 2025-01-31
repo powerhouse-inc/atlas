@@ -1,4 +1,4 @@
-/* eslint-disable react/jsx-max-depth */
+/* eslint-disable react/no-unescaped-entities */
 /* eslint-disable react/jsx-no-bind */
 import { useMemo } from "react";
 import { EditorProps } from "document-model/document";
@@ -22,16 +22,15 @@ import { DateTimeLocalInput } from "./dateTimeLocalInput";
 import { LegalEntityForm } from "./legalEntity";
 import { LineItemsTable } from "./lineItems";
 import { loadUBLFile } from "./ingestUBL";
-import { e } from "mathjs";
 import RequestFinance from "./requestFinance";
 import InvoiceToGnosis from "./invoiceToGnosis";
 
 export default function Editor(
-  props: EditorProps<InvoiceState, InvoiceAction, InvoiceLocalState>
+  props: EditorProps<InvoiceState, InvoiceAction, InvoiceLocalState>,
 ) {
   const { document, dispatch } = props;
   const state = document.state.global;
-  console.log("state", state);
+  console.log("State: ", state);
 
   const itemsTotalTaxExcl = useMemo(() => {
     return state.lineItems.reduce((total, lineItem) => {
@@ -61,7 +60,15 @@ export default function Editor(
     dispatch(
       actions.editInvoice({
         dateIssued: e.target.value,
-      })
+      }),
+    );
+  }
+
+  function handleUpdateDateDelivered(e: React.ChangeEvent<HTMLInputElement>) {
+    dispatch(
+      actions.editInvoice({
+        dateDelivered: e.target.value,
+      }),
     );
   }
 
@@ -69,7 +76,7 @@ export default function Editor(
     dispatch(
       actions.editInvoice({
         dateDue: e.target.value,
-      })
+      }),
     );
   }
 
@@ -77,7 +84,7 @@ export default function Editor(
     dispatch(
       actions.editInvoice({
         invoiceNo: e.target.value,
-      })
+      }),
     );
   }
 
@@ -86,6 +93,7 @@ export default function Editor(
   }
 
   function handleUpdateIssuerInfo(input: EditIssuerInput) {
+    console.log("input: ", input);
     dispatch(actions.editIssuer(input));
   }
 
@@ -142,7 +150,7 @@ export default function Editor(
   ];
 
   const handleFileUpload = async (
-    event: React.ChangeEvent<HTMLInputElement>
+    event: React.ChangeEvent<HTMLInputElement>,
   ) => {
     const file = event.target.files?.[0];
     if (!file) return;
@@ -179,10 +187,10 @@ export default function Editor(
             <label className="mx-3 inline-flex cursor-pointer items-center rounded bg-blue-500 px-4 py-2 text-white hover:bg-blue-600">
               Upload UBL
               <input
-                type="file"
-                onChange={handleFileUpload}
                 accept=".xml"
                 className="hidden"
+                onChange={handleFileUpload}
+                type="file"
               />
             </label>
           </div>
@@ -211,9 +219,9 @@ export default function Editor(
               <label className="mb-2">Issue Date:</label>
               <DateTimeLocalInput
                 className="w-64"
-                value={state.dateIssued}
                 inputType="date"
                 onChange={handleUpdateDateIssued}
+                value={state.dateIssued}
               />
             </div>
 
@@ -221,9 +229,9 @@ export default function Editor(
               <label className="mb-2">Delivery Date:</label>
               <DateTimeLocalInput
                 className="w-64"
-                value={state.dateDelivered || state.dateIssued}
                 inputType="date"
-                onChange={handleUpdateDateIssued}
+                onChange={handleUpdateDateDelivered}
+                value={state.dateDelivered || state.dateIssued}
               />
             </div>
           </div>
@@ -241,9 +249,9 @@ export default function Editor(
           <label className="mr-2">Due Date:</label>
           <DateTimeLocalInput
             className="ml-2 w-64"
-            value={state.dateDue}
             inputType="date"
             onChange={handleUpdateDateDue}
+            value={state.dateDue}
           />
           <LegalEntityForm
             bankDisabled
@@ -258,8 +266,8 @@ export default function Editor(
         lineItems={state.lineItems}
         onAddItem={handleAddItem}
         onDeleteItem={handleDeleteItem}
-        onUpdateItem={handleUpdateItem}
         onUpdateCurrency={handleUpdateCurrency}
+        onUpdateItem={handleUpdateItem}
       />
 
       {/* Totals */}

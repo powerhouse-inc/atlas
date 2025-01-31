@@ -1,18 +1,18 @@
-/* eslint-disable react/jsx-max-depth */
+/* eslint-disable @typescript-eslint/no-unsafe-assignment */
+/* eslint-disable @typescript-eslint/no-unsafe-member-access */
 import {
   AccountType,
   InputMaybe,
   LegalEntity,
   LegalEntityId,
   Scalars,
-  Wallet,
 } from "../../document-models/invoice";
 import React, { useCallback, useState } from "react";
 import { ComponentPropsWithRef, Ref, forwardRef } from "react";
 import { twMerge } from "tailwind-merge";
 
 export type LegalEntityBasicInput = {
-  id?: InputMaybe<LegalEntityId>;
+  id?: InputMaybe<Scalars["String"]["input"]>;
   name?: InputMaybe<Scalars["String"]["input"]>;
   streetAddress?: InputMaybe<Scalars["String"]["input"]>;
   extendedAddress?: InputMaybe<Scalars["String"]["input"]>;
@@ -27,6 +27,8 @@ export type LegalEntityBasicInput = {
 export type LegalEntityBankInput = {
   ABA?: InputMaybe<Scalars["String"]["input"]>;
   ABAIntermediary?: InputMaybe<Scalars["String"]["input"]>;
+  BIC?: InputMaybe<Scalars["String"]["input"]>;
+  BICIntermediary?: InputMaybe<Scalars["String"]["input"]>;
   SWIFT?: InputMaybe<Scalars["String"]["input"]>;
   SWIFTIntermediary?: InputMaybe<Scalars["String"]["input"]>;
   accountNum?: InputMaybe<Scalars["String"]["input"]>;
@@ -124,20 +126,28 @@ export const LegalEntityBasicInput = forwardRef(function LegalEntityBasicInput(
   const handleInputChange =
     (field: keyof LegalEntityBasicInput) =>
     (e: React.ChangeEvent<HTMLInputElement>) => {
+      console.log(field, e.target.value);
+
       onChange({
         ...value,
+        id: field === "id" ? e.target.value : value.id, // Ensure `id` remains a string
         [field]: e.target.value,
       });
     };
 
+  const normalizedId =
+    typeof value.id === "string"
+      ? value.id
+      : ((value.id as any)?.taxId ?? (value.id as any)?.corpRegId ?? "");
+
   return (
     <div
       {...divProps}
-      ref={ref}
       className={twMerge(
         "rounded-lg border border-gray-200 bg-white p-6",
         props.className,
       )}
+      ref={ref}
     >
       <h3 className="mb-4 text-lg font-semibold text-gray-900">
         Basic Information
@@ -159,10 +169,7 @@ export const LegalEntityBasicInput = forwardRef(function LegalEntityBasicInput(
             disabled={disabled}
             onChange={handleInputChange("id")}
             placeholder="123456789..."
-            value={
-              ((value.id?.taxId ||
-                value.id?.corpRegId) as InputMaybe<LegalEntityId>) ?? ""
-            }
+            value={normalizedId}
           />
         </div>
 
@@ -302,11 +309,11 @@ export const LegalEntityBankInput = forwardRef(function LegalEntityBankInput(
   return (
     <div
       {...divProps}
-      ref={ref}
       className={twMerge(
         "rounded-lg border border-gray-200 bg-white p-6",
         props.className,
       )}
+      ref={ref}
     >
       <h3 className="mb-4 text-lg font-semibold text-gray-900">
         Banking Information
@@ -338,9 +345,9 @@ export const LegalEntityBankInput = forwardRef(function LegalEntityBankInput(
 
                 <TextInput
                   disabled={disabled}
-                  onChange={createInputHandler("ABA")}
+                  onChange={createInputHandler("BIC")}
                   placeholder="ABA/BIC/SWIFT No."
-                  value={(value.ABA || value.SWIFT) ?? ""}
+                  value={(value.ABA || value.BIC || value.SWIFT) ?? ""}
                 />
               </div>
             </div>
@@ -438,7 +445,7 @@ export const LegalEntityBankInput = forwardRef(function LegalEntityBankInput(
           </label>
         </div>
 
-        {showIntermediary && (
+        {showIntermediary ? (
           <div className="bg-blue-50 mt-4 space-y-6 rounded-lg border border-blue-100 p-6">
             <h3 className="text-lg font-semibold text-gray-900">
               Intermediary Bank Details
@@ -463,7 +470,7 @@ export const LegalEntityBankInput = forwardRef(function LegalEntityBankInput(
                       <FieldLabel>Account Details</FieldLabel>
                       <AccountTypeSelect
                         disabled={disabled}
-                        onChange={createInputHandler("accountType")}
+                        onChange={createInputHandler("accountTypeIntermediary")}
                         value={value.accountTypeIntermediary ?? ""}
                       />
                     </div>
@@ -472,10 +479,12 @@ export const LegalEntityBankInput = forwardRef(function LegalEntityBankInput(
 
                       <TextInput
                         disabled={disabled}
-                        onChange={createInputHandler("ABA")}
+                        onChange={createInputHandler("BICIntermediary")}
                         placeholder="ABA/BIC/SWIFT No."
                         value={
-                          (value.ABAIntermediary || value.SWIFTIntermediary) ??
+                          (value.ABAIntermediary ||
+                            value.BICIntermediary ||
+                            value.SWIFTIntermediary) ??
                           ""
                         }
                       />
@@ -569,7 +578,7 @@ export const LegalEntityBankInput = forwardRef(function LegalEntityBankInput(
               </div>
             </div>
           </div>
-        )}
+        ) : null}
       </div>
     </div>
   );
@@ -615,11 +624,11 @@ export const LegalEntityWalletInput = forwardRef(
     return (
       <div
         {...divProps}
-        ref={ref}
         className={twMerge(
           "rounded-lg border border-gray-200 bg-white p-6",
           props.className,
         )}
+        ref={ref}
       >
         <h3 className="mb-4 text-lg font-semibold text-gray-900">
           Wallet Information
@@ -694,7 +703,10 @@ export function LegalEntityForm({
 }: LegalEntityFormProps) {
   const basicInfo: LegalEntityBasicInput = {
     name: legalEntity.name ?? null,
-    id: (legalEntity.id as InputMaybe<LegalEntityId>) ?? null,
+    id:
+      (legalEntity.id as any)?.taxId ??
+      (legalEntity.id as any)?.corpRegId ??
+      null,
     streetAddress: legalEntity.address?.streetAddress ?? null,
     extendedAddress: legalEntity.address?.extendedAddress ?? null,
     city: legalEntity.address?.city ?? null,
@@ -715,6 +727,9 @@ export function LegalEntityForm({
     SWIFT: legalEntity.paymentRouting?.bank?.SWIFT ?? null,
     SWIFTIntermediary:
       legalEntity.paymentRouting?.bank?.intermediaryBank?.SWIFT ?? null,
+    BIC: legalEntity.paymentRouting?.bank?.BIC ?? null,
+    BICIntermediary:
+      legalEntity.paymentRouting?.bank?.intermediaryBank?.BIC ?? null,
     ABA: legalEntity.paymentRouting?.bank?.ABA ?? null,
     ABAIntermediary:
       legalEntity.paymentRouting?.bank?.intermediaryBank?.ABA ?? null,

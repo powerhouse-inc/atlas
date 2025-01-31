@@ -42,9 +42,23 @@ export class UBLConverter {
     this.processLineItems(invoice);
   }
 
-  private getElementText(parent: Element, selector: string): string {
-    const element = parent.querySelector(selector);
-    return element ? element.textContent || "" : "";
+  // private getElementText(parent: Element, selector: string): string {
+  //   const element = parent.querySelector(selector);
+  //   return element ? element.textContent || "" : "";
+  // }
+
+  getElementText(
+    node: Element,
+    selector: string,
+    schemeID?: string,
+  ): string | null {
+    const elements = node.querySelectorAll(selector);
+    for (const el of elements) {
+      if (!schemeID || el.getAttribute("schemeID") === schemeID) {
+        return el.textContent?.trim() ?? null;
+      }
+    }
+    return null;
   }
 
   private getElementTextList(parent: Element, selector: string): string[] {
@@ -67,10 +81,12 @@ export class UBLConverter {
             invoice,
             "ActualDeliveryDate, cbc\\:ActualDeliveryDate",
           ) || null,
-        currency: this.getElementText(
-          invoice,
-          "CurrencyCode, cbc\\:CurrencyCode",
-        ),
+        currency:
+          this.getElementText(invoice, "CurrencyCode, cbc\\:CurrencyCode") ||
+          this.getElementText(
+            invoice,
+            "DocumentCurrencyCode, cbc\\:DocumentCurrencyCode",
+          ),
       }),
     );
 
@@ -100,10 +116,15 @@ export class UBLConverter {
     if (supplier) {
       this.dispatch(
         actions.editIssuer({
-          id: this.getElementText(
-            supplier,
-            "PartyIdentification ID, cac\\:PartyIdentification cbc\\:ID",
-          ),
+          id:
+            this.getElementText(
+              supplier,
+              "PartyIdentification ID, cac\\:PartyIdentification cbc\\:ID",
+            ) ||
+            this.getElementText(
+              supplier,
+              "CompanyID, cac\\:CompanyID cbc\\:ID",
+            ),
           name: this.getElementText(
             supplier,
             "PartyName Name, cac\\:PartyName cbc\\:Name",
@@ -138,25 +159,42 @@ export class UBLConverter {
           ),
         }),
       );
-
-      // Process issuer bank details
-      const financialAccount = supplier.querySelector(
-        "FinancialAccount, cac\\:FinancialAccount",
+      const paymentMeans = invoice.querySelector(
+        "PaymentMeans, cac\\:PaymentMeans",
       );
-      if (financialAccount) {
-        this.dispatch(
-          actions.editIssuerBank({
-            name: this.getElementText(
-              financialAccount,
-              "FinancialInstitutionBranch FinancialInstitution Name, cac\\:FinancialInstitutionBranch cac\\:FinancialInstitution cbc\\:Name",
-            ),
-            accountNum: this.getElementText(financialAccount, "ID, cbc\\:ID"),
-            SWIFT: this.getElementText(
-              financialAccount,
-              "FinancialInstitutionBranch FinancialInstitution ID, cac\\:FinancialInstitutionBranch cac\\:FinancialInstitution cbc\\:ID",
-            ),
-          }),
+
+      if (paymentMeans) {
+        const financialAccount = paymentMeans.querySelector(
+          "PayeeFinancialAccount, cac\\:PayeeFinancialAccount",
         );
+
+        if (financialAccount) {
+          this.dispatch(
+            actions.editIssuerBank({
+              accountNum:
+                this.getElementText(financialAccount, "cbc\\:ID, ID", "IBAN") ??
+                this.getElementText(financialAccount, "cbc\\:ID, ID"),
+
+              BIC: this.getElementText(financialAccount, "cbc\\:ID, ID", "BIC"),
+
+              SWIFT: this.getElementText(
+                financialAccount,
+                "cbc\\:ID, ID",
+                "SWIFT",
+              ),
+
+              // ABA extraction
+              ABA: this.getElementText(financialAccount, "cbc\\:ID, ID", "ABA"),
+
+              // Name remains unchanged
+              name: this.getElementText(
+                financialAccount,
+                "FinancialInstitutionBranch FinancialInstitution Name, " +
+                  "cac\\:FinancialInstitutionBranch cac\\:FinancialInstitution cbc\\:Name",
+              ),
+            }),
+          );
+        }
       }
     }
 
@@ -236,39 +274,50 @@ export class UBLConverter {
     invoiceLines.forEach((line) => {
       const taxPercent =
         parseFloat(
-          this.getElementText(
-            line,
-            "TaxTotal TaxSubtotal TaxCategory Percent, cac\\:TaxTotal cac\\:TaxSubtotal cac\\:TaxCategory cbc\\:Percent",
-          ),
+          this.getElementText(line, "cbc\\:Percent, Percent") ?? "0",
         ) || 0;
 
-      const quantity = parseFloat(
-        this.getElementText(line, "InvoicedQuantity, cbc\\:InvoicedQuantity"),
-      );
+      const quantity =
+        parseFloat(
+          this.getElementText(
+            line,
+            "cbc\\:InvoicedQuantity, InvoicedQuantity",
+          ) ?? "0",
+        ) || 0;
 
-      const unitPriceExcl = parseFloat(
-        this.getElementText(
-          line,
-          "Price PriceAmount, cac\\:Price cbc\\:PriceAmount",
-        ),
-      );
+      const unitPriceExcl =
+        parseFloat(
+          this.getElementText(line, "cbc\\:PriceAmount, PriceAmount") ?? "0",
+        ) || 0;
 
       const unitPriceIncl = unitPriceExcl * (1 + taxPercent / 100);
 
       this.dispatch(
         actions.addLineItem({
-          id: this.getElementText(line, "ID, cbc\\:ID"),
+          id: this.getElementText(line, "cbc\\:ID, ID") ?? "",
+
           description:
-            this.getElementText(
-              line,
-              "Item Description, cac\\:Item cbc\\:Description",
-            ) || this.getElementText(line, "Item Name, cac\\:Item cbc\\:Name"),
+            this.getElementText(line, "cbc\\:Description, Description") ||
+            this.getElementText(line, "cbc\\:Name, Name") ||
+            "No description",
+
           taxPercent,
           quantity,
+
           currency:
             line
-              .querySelector("Price PriceAmount, cac\\:Price cbc\\:PriceAmount")
-              ?.getAttribute("currencyID") || "USD",
+              .querySelector("cbc\\:PriceAmount, PriceAmount")
+              ?.getAttribute("currencyID") ||
+            line
+              .querySelector("cbc\\:LineExtensionAmount, LineExtensionAmount")
+              ?.getAttribute("currencyID") ||
+            this.getElementText(invoice, "CurrencyCode, cbc\\:CurrencyCode") ||
+            this.getElementText(
+              invoice,
+              "DocumentCurrencyCode, cbc\\:DocumentCurrencyCode",
+            ) ||
+            "USD",
+
           unitPriceTaxExcl: unitPriceExcl,
           unitPriceTaxIncl: unitPriceIncl,
           totalPriceTaxExcl: quantity * unitPriceExcl,

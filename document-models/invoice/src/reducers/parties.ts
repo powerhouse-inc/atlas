@@ -56,7 +56,7 @@ export const reducer: InvoicePartiesOperations = {
           ),
         },
         country: action.input.country ?? state.issuer.country,
-        id: (action.input.id as Maybe<LegalEntityId>) ?? state.issuer.id,
+        id: action.input.id ? { taxId: action.input.id } : state.issuer.id,
         name: getStateValue(action.input.name, state.issuer.name ?? null),
       };
     } catch (e) {
@@ -271,7 +271,7 @@ export const reducer: InvoicePartiesOperations = {
           ),
         },
         country: action.input.country ?? state.payer.country,
-        id: (action.input.id as Maybe<LegalEntityId>) ?? state.payer.id,
+        id: action.input.id ? { taxId: action.input.id } : state.payer.id,
         name: getStateValue(action.input.name, state.payer.name ?? null),
       };
     } catch (e) {
