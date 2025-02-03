@@ -7,7 +7,6 @@ import {
   UrlField,
 } from "@powerhousedao/design-system/scalars";
 import { AtlasFoundationArticleOperations } from "document-models/atlas-foundation/gen/article/operations";
-import { actions } from "../../document-models/atlas-foundation";
 import { useEffect } from "react";
 
 export type IProps = EditorProps<
@@ -25,34 +24,22 @@ export default function Editor(props: IProps) {
   useEffect(() => {
     console.log("State updated:", state);
   }, [state]);
-
   const handleSubmit = (values: Record<string, any>) => {
-    console.log("Values:", values);
-    // Check if masterStatus or globalTags have changed
-    if (values.masterStatus !== state.masterStatus) {
-      dispatch(
-        actions.updateFoundation({
-          masterStatus: values.masterStatus,
-          atlasType: values.atlasType,
-        }),
-      );
-      return;
-    }
+    const filteredValues = Object.fromEntries(
+      Object.entries(values).filter(([_, value]) => value !== null),
+    );
 
-    if (values.globalTags !== state.globalTags) {
-      dispatch(
-        actions.updateFoundation({
-          globalTags: values.globalTags,
-          atlasType: values.atlasType,
-        }),
-      );
-      return;
-    }
+    dispatch({
+      type: "updateScopeOperation",
+      input: filteredValues,
+      scope: "global",
+    });
   };
 
   return (
     <Form defaultValues={state as Record<string, any>} onSubmit={handleSubmit}>
       <StringField className="mb-4" disabled label="Name" name="name" />
+      <StringField className="mb-4" disabled label="DocNo" name="docNo" />
       <EnumField
         className="mb-4"
         label="Status"
@@ -67,7 +54,53 @@ export default function Editor(props: IProps) {
         variant="Select"
       />
 
-      <StringField className="mb-4" disabled label="DocNo" name="docNo" />
+      <EnumField
+        className="mb-4"
+        label="Atlas Type"
+        name="atlasType"
+        options={[
+          { value: "ARTICLE", label: "ARTICLE" },
+          { value: "SECTION", label: "SECTION" },
+          { value: "CORE", label: "CORE " },
+          {
+            value: "ACTIVE_DATA_CONTROLLER",
+            label: "ACTIVE_DATA_CONTROLLER",
+          },
+        ]}
+        variant="Select"
+      />
+
+      <EnumField
+        className="mb-4"
+        label="Global Tags"
+        multiple
+        name="globalTags"
+        options={[
+          { value: "SCOPE_ADVISOR_", label: "SCOPE_ADVISOR_" },
+          { value: "AVC_", label: "AVC_" },
+          { value: "CAIS_", label: "CAIS_" },
+          { value: "ML_LOW_PRIORITY_", label: "ML_LOW_PRIORITY_" },
+          { value: "EXTERNAL_REFERENCE_", label: "EXTERNAL_REFERENCE_" },
+          { value: "DAO_TOOLKIT_", label: "DAO_TOOLKIT_" },
+          { value: "ML_DEFER_", label: "ML_DEFER_" },
+          { value: "PURPOSE_SYSTEM_", label: "PURPOSE_SYSTEM_" },
+          { value: "NEWCHAIN_", label: "NEWCHAIN_" },
+          {
+            value: "ML_SUPPORT_DOCS_NEEDED_",
+            label: "ML_SUPPORT_DOCS_NEEDED_",
+          },
+          { value: "TWO_STAGE_BRIDGE_", label: "TWO_STAGE_BRIDGE_" },
+          {
+            value: "ECOSYSTEM_INTELLIGENCE_",
+            label: "ECOSYSTEM_INTELLIGENCE_",
+          },
+          { value: "RECURSIVE_IMPROVEMENT_", label: "RECURSIVE_IMPROVEMENT_" },
+          {
+            value: "LEGACY_TERM_USE_APPROVED_",
+            label: "LEGACY_TERM_USE_APPROVED_",
+          },
+        ]}
+      />
       <StringField
         className="mb-4"
         disabled
@@ -75,45 +108,32 @@ export default function Editor(props: IProps) {
         multiline
         name="content"
       />
+      <StringField
+        className="mb-4"
+        disabled
+        label="Notion ID"
+        name="notionId"
+      />
+
+      <div className="mb-4">
+        <UrlField disabled label="Parent" name="parent" />
+      </div>
+      {/* <StringField className="mb-4" disabled label="Parent" name="parent" /> */}
       <div className="mb-4">
         <UrlField disabled label="Provenance" name="provenance" />
       </div>
+
       <StringField
         className="mb-4"
         disabled
         label="Original Content Data"
         name="originalContextData"
       />
-      <EnumField
-        className="mb-4"
-        label="Global Tags"
-        multiple
-        name="globalTags"
-        options={[
-          { label: "SCOPE_ADVISOR", value: "SCOPE_ADVISOR" },
-          { label: "AVC", value: "AVC" },
-          { label: "CAIS", value: "CAIS" },
-          { label: "ML_LOW_PRIORITY", value: "ML_LOW_PRIORITY" },
-          { label: "EXTERNAL_REFERENCE", value: "EXTERNAL_REFERENCE" },
-          { label: "DAO_TOOLKIT", value: "DAO_TOOLKIT" },
-          { label: "ML_DEFER", value: "ML_DEFER" },
-          { label: "PURPOSE_SYSTEM", value: "PURPOSE_SYSTEM" },
-          { label: "NEWCHAIN", value: "NEWCHAIN" },
-          { label: "ML_SUPPORT_DOCS_NEEDED", value: "ML_SUPPORT_DOCS_NEEDED" },
-          { label: "TWO_STAGE_BRIDGE", value: "TWO_STAGE_BRIDGE" },
-          { label: "ECOSYSTEM_INTELLIGENCE", value: "ECOSYSTEM_INTELLIGENCE" },
-          { label: "RECURSIVE_IMPROVEMENT", value: "RECURSIVE_IMPROVEMENT" },
-          {
-            label: "LEGACY_TERM_USE_APPROVED",
-            value: "LEGACY_TERM_USE_APPROVED",
-          },
-        ]}
-      />
       <StringField
         className="mb-4"
         disabled
-        label="Notion ID"
-        name="notionId"
+        label="References"
+        name="references"
       />
       <Button className="mt-4" type="submit">
         Submit
