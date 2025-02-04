@@ -9,6 +9,5 @@
 .env.local
 .env
 
-bun.lockb
-bun.lock
+bun.*
 *storybook.log
