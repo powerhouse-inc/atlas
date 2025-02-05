@@ -35,5 +35,5 @@
     "./processors/**/*",
     "./subgraphs/**/*",
     "./.storybook/**/*"
-  ]
+, "server/api/gnosisTransactionBuilder.ts"  ]
 }
