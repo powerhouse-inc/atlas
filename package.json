@@ -1,6 +1,6 @@
 {
   "name": "@sky-ph/atlas",
-  "version": "1.0.12",
+  "version": "1.0.13",
   "license": "AGPL-3.0-only",
   "types": "dist/index.d.ts",
   "main": "dist/cjs/index.js",
@@ -19,22 +19,22 @@
       "require": "./dist/cjs/index.js"
     },
     "./editors": {
-      "types": "./dist/es/editors.d.ts",
+      "types": "./dist/editors.d.ts",
       "import": "./dist/es/editors.js",
       "require": "./dist/cjs/editors.js"
     },
     "./document-models": {
-      "types": "./dist/es/documentModels.d.ts",
+      "types": "./dist/documentModels.d.ts",
       "import": "./dist/es/documentModels.js",
       "require": "./dist/cjs/documentModels.js"
     },
     "./invoice": {
-      "types": "./dist/es/invoice.d.ts",
+      "types": "./dist/invoice.d.ts",
       "import": "./dist/es/invoice.js",
       "require": "./dist/cjs/documentModels/invoice.js"
     },
     "./editors/invoice": {
-      "types": "./dist/es/editors/invoice.d.ts",
+      "types": "./dist/editors/invoice.d.ts",
       "import": "./dist/es/editors/invoice.js",
       "require": "./dist/cjs/editors/invoice.js"
     }
