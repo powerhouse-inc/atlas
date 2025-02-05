@@ -1,10 +1,11 @@
+/* eslint-disable @typescript-eslint/no-unsafe-assignment */
 /**
  * This is a scaffold file meant for customization:
  * - modify it by implementing the reducer functions
  * - delete the file and run the code generator again to have it reset
  */
 
-import { InvoiceLineItem, InvoiceState } from "document-models/invoice";
+import { InvoiceLineItem, InvoiceState } from "../../gen";
 import { InvoiceItemsOperations } from "../../gen/items/operations";
 
 export const reducer: InvoiceItemsOperations = {
