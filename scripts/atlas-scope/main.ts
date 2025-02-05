@@ -11,12 +11,14 @@ import notionArticles from "./data/notion-pages/article.json";
 import { addArticles, populateScope } from "scripts/utils/atlas-actions";
 import { DocumentDriveDocument } from "document-model-libs/document-drive";
 import { IBaseDocumentDriveServer } from "document-drive";
+
+
 async function main() {
-  console.time("...duration");
-  console.log("Creating Atlas Documents...");
+  console.time('...duration')
+  console.log('Creating Atlas Documents...')
 
   const driveServer = (await createReactorAndCreateLocalDrive(
-    "http://localhost:4001/d/powerhouse",
+    "http://localhost:4001/d/powerhouse"
   )) as IBaseDocumentDriveServer;
 
   const driveIds = await driveServer.getDrives();

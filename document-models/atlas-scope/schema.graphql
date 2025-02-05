@@ -14,7 +14,7 @@ type AtlasScopeState {
   name: String
   docNo: String # e.g, A.1
   content: String # change to markdown later (includes links, tables...)
-  masterStatus: Status # Aggregation: MasterStatus can exist independently of Scope
+  masterStatus: MasterStatus # Aggregation: MasterStatus can exist independently of Scope
   globalTags: [GlobalTag!]!
 	originalContextData: [PHID!]!
 	provenance: URL # p0Hub backlink
@@ -22,7 +22,7 @@ type AtlasScopeState {
 }
 
 
-enum Status {
+enum MasterStatus {
   PLACEHOLDER
   PROVISIONAL # enables ecosystem participants to interact with the material in a practical context, resulting in valuable feedback or other data concerning the Document's appropriateness.
   APPROVED # material instance can be integrated into the Atlas
@@ -62,7 +62,7 @@ enum GlobalTag {
 # scope
 
 input UpdateScopeInput {
-  masterStatus: Status
+  masterStatus: MasterStatus
   globalTags: [GlobalTag!]
 }
 
@@ -70,7 +70,7 @@ input PopulateScopeInput {
   name: String
   docNo: String # e.g, A.1
   content: String # change to markdown later (includes links, tables...)
-  masterStatus: Status
+  masterStatus: MasterStatus
   globalTags: [GlobalTag!]
 	originalContextData: [PHID!]
 	provenance: URL # p0Hub backlink

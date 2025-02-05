@@ -27,7 +27,7 @@ type EditableLineItemProps = {
 
 const EditableLineItem = forwardRef(function EditableLineItem(
   props: EditableLineItemProps,
-  ref: React.Ref<HTMLTableRowElement>
+  ref: React.Ref<HTMLTableRowElement>,
 ) {
   const { item, onSave, onCancel, currency } = props;
   const [editedItem, setEditedItem] = useState<Partial<LineItem>>({
@@ -299,7 +299,7 @@ export function LineItemsTable({
                     </div>
                   </td>
                 </tr>
-              )
+              ),
             )}
             {isAddingNew ? (
               <EditableLineItem
