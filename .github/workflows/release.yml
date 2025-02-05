@@ -1,0 +1,21 @@
+on:
+  workflow_dispatch:
+    inputs:
+      tag:
+        default: latest
+        required: false
+        type: string
+
+name: Publish package
+jobs:
+  release:
+    name: release
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: oven-sh/setup-bun@v2
+      - run: bun install
+      - run: bun run build
+      - run: bun publish --tag ${{ inputs.tag }}
+        env:
+          NPM_CONFIG_TOKEN: ${{ secrets.NPM_CONFIG_TOKEN }}
