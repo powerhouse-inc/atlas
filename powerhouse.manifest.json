@@ -1,0 +1,79 @@
+{
+  "name": "Sky Atlas",
+  "description": "The Atlas package offers contributors to the sky ecosystem to interact with the Atlas",
+  "category": "Governance",
+  "publisher": {
+    "name": "Powerhouse",
+    "url": "https://www.powerhouse.inc/"
+  },
+  "documentModels": [
+    {
+      "id": "atlas/accountTransactions",
+      "name": "Account Transactions"
+    },
+    {
+      "id": "atlas/AtlasFeedbackIssues",
+      "name": "Atlas Feedback Issues"
+    },
+
+    {
+      "id": "atlas/AtlasFoundation",
+      "name": "Atlas Foundation"
+    },
+    {
+      "id": "atlas/AtlasScope",
+      "name": "Atlas Scope"
+    },
+    {
+      "id": "powerhouse/invoice",
+      "name": "Invoice"
+    },
+    {
+      "id": "sky/rwaPortfolio",
+      "name": "RWA Portfolio"
+    }
+  ],
+  "editors": [
+    {
+      "id": "atlas/accountTransactions",
+      "name": "Account Transactions",
+      "documentTypes": ["*"]
+    },
+    {
+      "id": "atlas/AtlasFeedbackIssues",
+      "name": "Atlas Feedback Issues",
+      "documentTypes": ["*"]
+    },
+
+    {
+      "id": "atlas/AtlasFoundation",
+      "name": "Atlas Foundation",
+      "documentTypes": ["*"]
+    },
+    {
+      "id": "atlas/AtlasScope",
+      "name": "Atlas Scope",
+      "documentTypes": ["*"]
+    },
+    {
+      "id": "powerhouse/invoice",
+      "name": "Invoice",
+      "documentTypes": ["*"]
+    },
+    {
+      "id": "sky/rwaPortfolio",
+      "name": "Real World Assets",
+      "documentTypes": ["*"]
+    },
+    {
+      "id": "powerhouse/base-document-drive-editor",
+      "name": "Base Document Drive Editor",
+      "documentTypes": ["powerhouse/document-drive"]
+    },
+    {
+      "id": "powerhouse/json-editor",
+      "name": "JSON Editor",
+      "documentTypes": ["*"]
+    }
+  ]
+}
